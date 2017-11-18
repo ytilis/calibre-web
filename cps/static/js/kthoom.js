@@ -292,15 +292,26 @@ function loadFromArrayBuffer(ab) {
             });
         unarchiver.addEventListener(bitjs.archive.UnarchiveEvent.Type.EXTRACT,
             function(e) {
-            // convert DecompressedFile into a bunch of ImageFiles
+                // convert DecompressedFile into a bunch of ImageFiles
                 if (e.unarchivedFile) {
                     var f = e.unarchivedFile;
                     // add any new pages based on the filename
                     if (imageFilenames.indexOf(f.filename) === -1) {
                         imageFilenames.push(f.filename);
                         imageFiles.push(new kthoom.ImageFile(f));
+                        
+                        // add thumbnails to the TOC list
+                        $('#thumbnails').append(
+                            "<li> \
+                                <a data-page='"+ imageFiles.length +"'> \
+                                    <img src='"+ imageFiles[imageFiles.length - 1].dataURI +"' /> \
+                                    <span>"+ imageFiles.length +"</span> \
+                                </a> \
+                            </li>"
+                        );
                     }
                 }
+
                 // display first page if we haven't yet
                 if (imageFiles.length === currentImage + 1) {
                     updatePage();
@@ -444,10 +455,8 @@ function updateScale(clear) {
     mainImageStyle.height = "";
     mainImageStyle.maxWidth = "";
     mainImageStyle.maxHeight = "";
-    var maxheight = innerHeight - 15;
-    if (!/main/.test(getElem("titlebar").className)) {
-        maxheight -= 25;
-    }
+    var maxheight = innerHeight - 50;
+    
     if (clear || fitMode === kthoom.Key.N) {
     } else if (fitMode === kthoom.Key.B) {
         mainImageStyle.maxWidth = "100%";
@@ -457,6 +466,7 @@ function updateScale(clear) {
     } else if (fitMode === kthoom.Key.W) {
         mainImageStyle.width = "100%";
     }
+    $('#mainContent').css({maxHeight: maxheight + 5});
     kthoom.saveSettings();
 }
 
@@ -548,9 +558,18 @@ function init(filename) {
         $(document).keydown(keyHandler);
 
         $(window).resize(function() {
-            var f = (screen.width - innerWidth < 4 && screen.height - innerHeight < 4);
-            getElem("titlebar").className = f ? "main" : "";
             updateScale();
+        });
+
+        $("#slider").click(function(evt) {
+            $('#sidebar').toggleClass('open');
+            $('#main').toggleClass('closed');
+            $(this).toggleClass('icon-menu icon-right');
+        });
+
+        $('#thumbnails').on("click", "a", function(evt) {
+            currentImage = $(this).data('page') - 1;
+            updatePage();
         });
 
         $("#mainImage").click(function(evt) {

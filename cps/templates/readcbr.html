@@ -7,13 +7,14 @@
     <meta name="description" content="">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" type="text/css"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/kthoom.css') }}" type="text/css"/>
-    <link href="{{ url_for('static', filename='css/libs/bootstrap.min.css') }}" rel="stylesheet" media="screen">
-    <script src="{{ url_for('static', filename='js/libs/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/libs/bootstrap.min.js') }}"></script>
 
-	<script src="{{ url_for('static', filename='js/kthoom.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/archive.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/libs/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/kthoom.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/archive.js') }}"></script>
     <script>
             document.onreadystatechange = function () {
               if (document.readyState == "complete") {
@@ -23,16 +24,42 @@
     </script>    
   </head>
   <body>
-    <div class="main" id="main">
-	    <div id="titlebar">
-	      <div id="progress" class="hide"></div>
-             <div class="progress2" style="display:none">
-              <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                  aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                70%
-              </div>
+    <div id="sidebar">
+      <div id="panels">
+        <!-- <a id="show-Toc" class="show_view icon-list-1 active" data-view="Toc">TOC</a> -->
+        <!-- <a id="show-Bookmarks" class="show_view icon-bookmark" data-view="Bookmarks">Bookmarks</a> -->
+      </div>
+      <div id="tocView" class="view">
+        <ul id="thumbnails"></ul>
+      </div>
+      <div id="bookmarksView" class="view">
+        <ul id="bookmarks"></ul>
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div id="titlebar" class="main">
+        <div id="opener">
+          <a id="slider" class="icon-menu">Menu</a>
         </div>
-	    </div>
+        <div id="metainfo">
+          <span id="book-title"></span>
+          <span id="title-seperator">&nbsp;&nbsp;–&nbsp;&nbsp;</span>
+          <span id="chapter-title"></span>
+        </div>
+        <div id="title-controls">
+          <a id="setting" class="icon-cog">Settings</a>
+        </div>
+
+        <div id="progress" class="hide"></div>
+          <div class="progress2" style="display:none">
+          <div class="progress-bar" role="progressbar" aria-valuenow="70"
+              aria-valuemin="0" aria-valuemax="100" style="width:70%">
+            70%
+          </div>
+        </div>
+      </div>
+      
 	    <div id="mainContent">
 	      <div id="mainText" style="display:none"></div>
       	<canvas id="mainImage"></canvas>
