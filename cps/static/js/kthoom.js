@@ -456,7 +456,7 @@ function updateScale(clear) {
     mainImageStyle.maxWidth = "";
     mainImageStyle.maxHeight = "";
     var maxheight = innerHeight - 50;
-    
+
     if (clear || fitMode === kthoom.Key.N) {
     } else if (fitMode === kthoom.Key.B) {
         mainImageStyle.maxWidth = "100%";
@@ -567,10 +567,34 @@ function init(filename) {
             $(this).toggleClass('icon-menu icon-right');
         });
 
+        $("#setting").click(function(evt) {
+            $("#settings-modal").toggleClass('md-show');
+        });
+
+        $(".closer, .overlay").click(function(evt) {
+            $(".md-show").removeClass('md-show');
+        });
+
         $('#thumbnails').on("click", "a", function(evt) {
             currentImage = $(this).data('page') - 1;
             updatePage();
         });
+
+        // Fullscreen button
+        if (typeof screenfull !== "undefined") {
+            $('#fullscreen').click(function(evt) {
+                screenfull.toggle($("#container")[0])
+            });
+
+            if (screenfull.raw) {
+                var $button = $('#fullscreen');
+                document.addEventListener(screenfull.raw.fullscreenchange,function(){
+                    screenfull.isFullscreen 
+                    ? $button.addClass("icon-resize-small").removeClass("icon-resize-full")
+                    : $button.addClass("icon-resize-full").removeClass("icon-resize-small")
+                });
+            }
+        }
 
         $("#mainImage").click(function(evt) {
             // Firefox does not support offsetX/Y so we have to manually calculate
