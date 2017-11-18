@@ -9,6 +9,7 @@ body {
 
 #main {
   text-align: center;
+  z-index: 2;
 }
 
 #sidebar a,
@@ -39,6 +40,10 @@ body {
   line-height: 25px;
   background: #6b6b6b;
   border-top-left-radius: 5px;
+}
+
+#sidebar #panels {
+  z-index: 1;
 }
 
 #progress {
@@ -121,3 +126,43 @@ th, td {
   transform: translate(-50%, -50%);
 }
 
+.md-content {
+  min-height: 320px;
+  height: auto;
+}
+
+.md-content > div {
+  overflow: hidden;
+}
+
+.md-content > div p {
+  padding: 5px 0;
+}
+
+.settings-column {
+  float: left;
+  min-width: 50%;
+  padding-bottom: 10px;
+}
+
+.settings-column label, 
+.settings-column input {
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+.dark-theme #main {
+  background-color: #111;
+}
+
+.dark-theme #titlebar {
+  color: #DDD;
+}
+
+.dark-theme #titlebar a:active {
+  color: #FFF;
+}
+
+.dark-theme .overlay {
+  background-color: rgba(0,0,0,0.8);
+}

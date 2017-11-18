@@ -482,10 +482,10 @@ function keyHandler(evt) {
     if (evt.ctrlKey || evt.shiftKey || evt.metaKey) return;
     switch (code) {
         case kthoom.Key.LEFT:
-            if (canKeyPrev) showPrevPage();
+            showPrevPage();
             break;
         case kthoom.Key.RIGHT:
-            if (canKeyNext) showNextPage();
+            showNextPage();
             break;
         case kthoom.Key.L:
             kthoom.rotateTimes--;
@@ -569,6 +569,10 @@ function init(filename) {
 
         $("#setting").click(function(evt) {
             $("#settings-modal").toggleClass('md-show');
+        });
+
+        $("#darkTheme").on("change", function(evt){
+            $('body').toggleClass('dark-theme', $(this).is(":checked"));
         });
 
         $(".closer, .overlay").click(function(evt) {
