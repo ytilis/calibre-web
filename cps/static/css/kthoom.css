@@ -121,6 +121,7 @@ th, td {
 
 th {
   text-align: right;
+  vertical-align: top;
 }
 
 .modal {
@@ -149,16 +150,18 @@ th {
   padding-bottom: 10px;
 }
 
-.settings-column input {
+.inputs {
+  margin: -5px;
+}
+
+.inputs input {
   vertical-align: middle;
 }
 
-.settings-column label {
+.inputs label {
+  display: inline-block;
+  margin: 5px;
   white-space: nowrap;
-}
-
-.settings-column label + label {
-  margin-left: 5px;
 }
 
 .dark-theme #main {
