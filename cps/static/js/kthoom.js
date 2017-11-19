@@ -579,38 +579,43 @@ function init(filename) {
             updateScale();
         });
 
+        // Open TOC menu
         $("#slider").click(function(evt) {
             $('#sidebar').toggleClass('open');
             $('#main').toggleClass('closed');
             $(this).toggleClass('icon-menu icon-right');
         });
 
+        // Open Settings modal
         $("#setting").click(function(evt) {
             $("#settings-modal").toggleClass('md-show');
         });
 
+        // On Settings input change
         $("#settings input").on("change", function(evt){
             // Get either the checked boolean or the assigned value
             var value = this.type === 'checkbox' ? this.checked : this.value;
 
             // If it's purely numeric, parse it to an integer
             value = /^\d+$/.test(value) ? parseInt(value) : value;
-
+            
             settings[this.name] = value;
             updatePage();
             updateScale();            
         });
 
+        // Close modal
         $(".closer, .overlay").click(function(evt) {
             $(".md-show").removeClass('md-show');
         });
 
+        // TOC thumbnail pagination
         $('#thumbnails').on("click", "a", function(evt) {
             currentImage = $(this).data('page') - 1;
             updatePage();
         });
 
-        // Fullscreen button
+        // Fullscreen mode
         if (typeof screenfull !== "undefined") {
             $('#fullscreen').click(function(evt) {
                 screenfull.toggle($("#container")[0])
