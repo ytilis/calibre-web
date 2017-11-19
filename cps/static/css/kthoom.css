@@ -1,10 +1,10 @@
 body {
-	background: #444;
+  background: #444;
   overflow-x: hidden;
   overflow-y: auto;
-	color: white;
-	font-family: sans-serif;
-	margin: 0px;
+  color: white;
+  font-family: sans-serif;
+  margin: 0px;
 }
 
 #main {
@@ -47,17 +47,17 @@ body {
 }
 
 #progress {
-	position: absolute;
-	display: inline;
-	left: 20%;
-	right: 20%;
-	height: 20px;
-	margin-top: 4px;
-	text-align: right;
+  position: absolute;
+  display: inline;
+  left: 20%;
+  right: 20%;
+  height: 20px;
+  margin-top: 4px;
+  text-align: right;
 }
 
 .hide {
-	display: none !important;
+  display: none !important;
 }
 
 #mainContent {
